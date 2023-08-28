@@ -1,0 +1,23 @@
+---
+- hosts: dev
+  become: yes
+  tasks:
+    - name: Install python pip
+      yum:
+        name: python-pip
+        state: present
+    - name: Install Docker-py python module
+      yum:
+        name: Docker-py
+        state: present
+    - name: To start the Docker-py
+      service:
+        name: Docker start
+        state: started
+    - name: Start the container
+      docker_container:
+        name: myredis
+        image: "manikandan020/mydemoapp:{(DOCKER_TAG)}"
+        state: started
+        exposed_ports:
+          - 0.0.0.0:8080:8080
