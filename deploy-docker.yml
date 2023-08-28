@@ -16,7 +16,7 @@
         state: started
     - name: Start the container
       docker_container:
-        name: myredis
+        name: mydemoapp
         image: "manikandan020/mydemoapp:{(DOCKER_TAG)}"
         state: started
         exposed_ports:
